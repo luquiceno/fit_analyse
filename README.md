@@ -4,21 +4,21 @@
 
 Make sure to use Python3.10 or newer.
 
-1. Fork/Clone
+1.  Fork/Clone
 
-2. Create and activate a virtual environment:
+2.  Create and activate a virtual environment:
 
     ```sh
     $ python3 -m venv venv && source venv/bin/activate
     ```
 
-3. Install the requirements:
+3.  Install the requirements:
 
     ```sh
     (venv)$ pip install -r requirements.txt
     ```
 
-4. Create a `.env` file in the root folder and add the following configuration:
+4.  Create a `.env` file in the root folder and add the following configuration:
 
     ```sh
     JWT_SECRET="some random secret key"
@@ -28,22 +28,22 @@ Make sure to use Python3.10 or newer.
     PORT=8082
     ```
 
-5. If you use a different DB_URL, please update it also in `./backend/alembic.ini`. Then
-create the database using:
+5.  If you use a different DB_URL, please update it also in `./backend/alembic.ini`. Then
+    create the database using:
 
-    ```sh
-    (venv)$ alembic upgrade head
-    ```
+        ```sh
+        (venv)$ alembic upgrade head
+        ```
 
-6. Run the app:
+6.  Run the app:
 
     ```sh
     (venv)$ python main.py
     ```
 
-6. Test at [http://localhost:8082/docs](http://localhost:8082/docs)
+7.  Test at [http://localhost:8082/docs](http://localhost:8082/docs)
 
-**Note**: the random secret `JWT_SECRET` can be generated for example 
+**Note**: the random secret `JWT_SECRET` can be generated for example
 using a command like this one:
 
 ```sh
@@ -55,8 +55,14 @@ match your needs.
 
 ## Front-end
 
-Make sure to change the .env file to point to the right
-backend. Then run the frontend using in development mode
+Make sure to change or create the .env file to point to the right
+backend.
+
+```sh
+  VITE_BACKEND_URL=http://localhost:8082
+```
+
+. Then run the frontend using in development mode
 using:
 
 ```
@@ -85,14 +91,18 @@ try_files $uri $uri/ /index.html =404;
 If you want to copy the folder as a subfolder, called for
 example `/app`, you also need
 to make the following two changes:
-* For the static paths, edit `vite.config.js` like this:
+
+- For the static paths, edit `vite.config.js` like this:
+
 ```
 export default defineConfig({
   plugins: [react()],
   base: '/app/',
 })
 ```
-* For the actual app, edit `main.jsx` like this:
+
+- For the actual app, edit `main.jsx` like this:
+
 ```
 <BrowserRouter basename="/app/">
   <App />
